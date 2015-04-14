@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "app-name": "reactAddressSummary",
+    "architecture": false,
+    "styles-language": "less"
+  }
+}
