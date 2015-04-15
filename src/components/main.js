@@ -1,5 +1,6 @@
 var ReactAddressBook = require('./ReactAddressBook');
 var React = require('react');
+var _ = require('underscore')
 var content = document.getElementById('content');
 
 var sampleUSAddress = {
@@ -127,8 +128,27 @@ var sampleBRAddress = {
   "types" : [ "street_address" ]
 };
 
-React.render((
-  <div>
-    <ReactAddressBook addressList={[sampleUSAddress, sampleBRAddress]}/>
-  </div>
-), content);
+var onSelect = function(address) {
+  console.log('address!', address);
+  _.each(addressList, function(a) {
+    if (a===address) {
+      a.selected = true;
+    }
+    else {
+      a.selected = false;
+    }
+  });
+  render();
+};
+
+var addressList = [sampleUSAddress, sampleBRAddress];
+
+var render = function() {
+  React.render((
+    <div>
+      <ReactAddressBook addressList={addressList} onSelect={onSelect}/>
+    </div>
+  ), content);
+};
+
+render();
