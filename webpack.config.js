@@ -14,11 +14,6 @@ module.exports = {
     publicPath: '/assets/'
   },
 
-  // Declare react as external so it can be shared by children components
-  externals: [{
-    react: 'React'
-  }],
-
   cache: true,
   debug: true,
   devtool: false,
@@ -37,8 +32,7 @@ module.exports = {
     alias: {
       'styles': __dirname + '/src/styles',
       'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/',
-      'react-address-summary': 'react-address-summary/src/components/ReactAddressSummary.js'
+      'components': __dirname + '/src/components/'
     }
   },
   module: {

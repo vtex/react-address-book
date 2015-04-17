@@ -2,7 +2,8 @@
 
 var React = require('react');
 var _ = require('underscore');
-var ReactAddressSummary = require('react-address-summary');
+var ReactAddressSummary = require('./ReactAddressSummary');
+var ReactAddressForm = require('./ReactAddressForm');
 
 require('normalize.css');
 require('../styles/address-book.less');
@@ -16,6 +17,7 @@ var ReactAddressBook = React.createClass({
     return (
       <div className='address-book'>
         {addressSummaryNodes}
+        <ReactAddressForm />
       </div>
     );
   }
