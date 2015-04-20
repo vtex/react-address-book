@@ -10,14 +10,27 @@ require('../styles/address-book.less');
 
 var ReactAddressBook = React.createClass({
   render: function() {
-    var addressSummaryNodes = _.map(this.props.addressList, function(a) {
-      return <ReactAddressSummary key={a.place_id} address={a} onSelect={this.props.onSelect}/>;
-    }.bind(this));
+    var addressForm;
+    var addressSummaryNodes;
+
+    if (this.props.editAddress) {
+      addressForm = <ReactAddressForm
+        address={this.props.editAddress}
+        onSubmit={this.props.onSubmit}/>;
+    } else {
+      addressSummaryNodes = _.map(this.props.addressList, function(a) {
+        return <ReactAddressSummary
+          key={a.place_id}
+          address={a}
+          onSelect={this.props.onSelect}
+          onEdit={this.props.onEdit}/>;
+      }.bind(this));
+    }
 
     return (
       <div className='address-book'>
         {addressSummaryNodes}
-        <ReactAddressForm />
+        {addressForm}
       </div>
     );
   }

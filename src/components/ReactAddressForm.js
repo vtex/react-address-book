@@ -85,17 +85,11 @@ var FormInput = React.createClass({
 });
 
 var ReactAddressForm = React.createClass({
-  handleAddressInputChange: function(e) {
-    console.log(e.target.value);
-    if (this.props.onChangeInput) {
-      this.props.onChangeInput(e.target.value);
+  handleSubmit: function(e) {
+    if (this.props.onSubmit) {
+      this.props.onSubmit(this.props.address);
     }
-  },
-
-  getDefaultProps: function() {
-    return {
-      address: {}
-    };
+    e.preventDefault();
   },
 
   render: function() {
@@ -107,7 +101,7 @@ var ReactAddressForm = React.createClass({
     var line3 = addressLineThree(this.props.address).map(renderInput);
     return (
       <div className='address-form'>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className='address-line-1 row'>
             {line1}
           </div>
