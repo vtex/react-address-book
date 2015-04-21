@@ -1,5 +1,5 @@
 {
-  "name": "react-address-summary",
+  "name": "react-address-book",
   "version": "0.0.0",
   "description": "",
   "repository": "",
@@ -10,8 +10,11 @@
   "mainInput": "main",
   "mainOutput": "main",
   "dependencies": {
+    "formsy-react": "^0.12.5",
+    "intl": "^0.1.4",
     "normalize.css": "~3.0.3",
-    "react": "~0.12.2",
+    "react": "~0.13.2",
+    "react-intl": "^1.2.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

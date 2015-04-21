@@ -1,34 +1,4 @@
-'use strict';
-
-var ReactAddressBook = require('./ReactAddressBook');
 var React = require('react');
-var _ = require('underscore');
-var content = document.getElementById('content');
-
-var onSelect = function(address) {
-  console.log('address selected!', address);
-  _.each(addressList, function(a) {
-    a.selected = (a === address);
-  });
-  render();
-};
-
-var onEdit = function(address) {
-  console.log('address edit!', address);
-  _.each(addressList, function(a) {
-    a.editing = (a === address);
-  });
-  render();
-};
-
-// Todo change address state
-var onSubmit = function(address) {
-  console.log('address submit!', address);
-  _.each(addressList, function(a) {
-    a.editing = false;
-  });
-  render();
-};
 
 var addressList = [
   {
@@ -50,7 +20,7 @@ var addressList = [
   {
     "addressType": "residential",
     "receiverName": "Martin",
-    "addressId": "-1429301413320",
+    "addressId": "-1429301413321",
     "postalCode": "22240000",
     "city": "Rio de Janeiro",
     "state": "RJ",
@@ -64,18 +34,26 @@ var addressList = [
   }
 ];
 
-var render = function() {
-  var editAddress = _.find(addressList, function(a) {return a.editing;});
-
-  React.render((
-    <div className='container'>
-      <ReactAddressBook addressList={addressList}
-                        editAddress={editAddress}
-                        onSelect={onSelect}
-                        onEdit={onEdit}
-                        onSubmit={onSubmit}/>
-    </div>
-  ), content);
+var onSelect = function(address) {
+  console.log('address selected!', address);
+  // TODO simulate API latency
+  // TODO check for errors and re-render with error message
 };
 
-render();
+var onValidSubmit = function(address) {
+  console.log('address submit!', address);
+  // TODO simulate API latency
+  // TODO check for errors and re-render with error message
+};
+
+var options = {
+  addressList: addressList,
+  onSelect: onSelect,
+  onValidSubmit: onValidSubmit
+};
+
+var content = document.getElementById('content');
+
+var AddressBook = React.createFactory(require('./AddressBook'));
+
+React.render(AddressBook(options), content);
