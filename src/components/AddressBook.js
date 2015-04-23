@@ -58,7 +58,7 @@ var AddressBook = React.createClass({
 
     if (editAddress) {
       addressForm = <AddressForm
-        address={editAddress}
+        initialAddress={editAddress}
         onValidSubmit={this.onValidSubmit}/>;
     } else {
       addressSummaryNodes = _.map(this.state.addressList, function(a) {

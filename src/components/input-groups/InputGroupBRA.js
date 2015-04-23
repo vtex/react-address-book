@@ -1,6 +1,6 @@
 var React = require('react');
 var CEP = require('../inputs/CEP');
-var Street = require('../inputs/Street');
+var Text = require('../inputs/Text');
 
 module.exports = function (address) {
   var className = 'input-group-' + address.country;
@@ -10,7 +10,9 @@ module.exports = function (address) {
         <CEP className='col-sm-6' value={address.postalCode}/>
       </div>
       <div className='row'>
-        <Street className='col-sm-6'
+        <Text className='col-sm-6'
+          name='street'
+          required
           value={address.street}/>
       </div>
     </div>

@@ -1,5 +1,6 @@
 var React = require('react');
 var Formsy = require('formsy-react');
+var _ = require('underscore');
 require('../styles/address-form.less');
 
 Formsy.addValidationRule('isAlphaNumericPunctuation', function (values, value) {
@@ -9,13 +10,20 @@ Formsy.addValidationRule('isAlphaNumericPunctuation', function (values, value) {
 var AddressForm = React.createClass({
   getInitialState: function () {
     return {
-      canSubmit: true
+      canSubmit: true,
+      address: this.props.initialAddress
     };
   },
 
   onValidSubmit: function (address) {
-    address.addressId = this.props.address.addressId;
+    address.addressId = this.state.address.addressId;
     this.props.onValidSubmit(address);
+  },
+
+  onChange: function (address) {
+    this.setState({
+      address: _.extend(this.state.address, address)
+    });
   },
 
   enableButton: function () {
@@ -31,18 +39,19 @@ var AddressForm = React.createClass({
   },
 
   render: function() {
-    if (!this.props.address) {
+    if (!this.state.address) {
       return;
     }
-    var country = this.props.address.country;
+    var country = this.state.address.country;
     var countryInputGroup = require('./input-groups/InputGroup' + country);
     return (
       <Formsy.Form
         className='address-form'
         onValidSubmit={this.onValidSubmit}
+        onChange={this.onChange}
         onValid={this.enableButton}
         onInvalid={this.disableButton}>
-        {countryInputGroup(this.props.address)}
+        {countryInputGroup(this.state.address)}
         <div className='row'>
           <div className='col-sm-3'>
             <button

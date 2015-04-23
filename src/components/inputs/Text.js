@@ -1,14 +1,14 @@
 var React = require('react');
 var Formsy = require('formsy-react');
 
-var Street = React.createClass({
+var Text = React.createClass({
   mixins: [Formsy.Mixin],
 
   getDefaultProps: function () {
     return {
-      name: 'street',
+      id: 'input-' + (Math.random() * 100000).toFixed(),
       validations: 'isAlphaNumericPunctuation',
-      required: true
+      errorMessage: 'Por favor, digite apenas letras e números'
     };
   },
 
@@ -25,14 +25,14 @@ var Street = React.createClass({
     }
     if (this.showError()) {
       className += ' error';
-      errorMessage = 'Por favor, digite apenas letras e números';
+      errorMessage = this.props.errorMessage;
     }
 
     return (
       <div className={className}>
-        <label htmlFor='street'>Rua</label>
+        <label htmlFor={this.props.id}>Rua</label>
         <input type='text'
-          id='street'
+          id={this.props.id}
           className='form-control'
           onChange={this.changeValue}
           value={this.getValue()}/>
@@ -44,4 +44,4 @@ var Street = React.createClass({
   }
 });
 
-module.exports = Street;
+module.exports = Text;
