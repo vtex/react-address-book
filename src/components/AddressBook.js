@@ -2,11 +2,18 @@ var React = require('react');
 var _ = require('underscore');
 var AddressSummary = require('./AddressSummary');
 var AddressForm = require('./AddressForm');
+if (!window.Intl) {
+  window.Intl = require('intl');
+}
+var ReactIntl = require('react-intl');
+var IntlMixin = ReactIntl.IntlMixin;
 
 require('normalize.css');
 require('../styles/address-book.less');
 
 var AddressBook = React.createClass({
+  mixins: [ReactIntl.IntlMixin],
+
   getInitialState: function() {
     return {
       addressList: this.props.addressList

@@ -1,7 +1,12 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+var IntlMixin = ReactIntl.IntlMixin;
+var FormattedMessage = ReactIntl.FormattedMessage;
 require('../styles/address-summary.less');
 
 var AddressSummary = React.createClass({
+  mixins: [ReactIntl.IntlMixin],
+  
   onCheck: function() {
     if (this.props.onSelect) {
       this.props.onSelect(this.props.address);
@@ -28,7 +33,8 @@ var AddressSummary = React.createClass({
             <input type="checkbox"
                    checked={this.props.address.selected}
                    onChange={this.onCheck}/>
-            <span>Selecionado</span>
+             <FormattedMessage
+               message={this.getIntlMessage('selected')} />
           </label>
         </div>
         {countrySummary(this.props.address)}
@@ -36,7 +42,8 @@ var AddressSummary = React.createClass({
           <label>
             <button className='btn btn-link'
                     onClick={this.onEdit}>
-              Editar
+              <FormattedMessage
+                message={this.getIntlMessage('edit')} />
             </button>
           </label>
         </div>

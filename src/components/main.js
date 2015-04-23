@@ -1,5 +1,5 @@
 var React = require('react');
-
+var messages = require('../i18n/pt');
 var addressList = [
   {
     "addressType": "residential",
@@ -49,7 +49,9 @@ var onValidSubmit = function(address) {
 var options = {
   addressList: addressList,
   onSelect: onSelect,
-  onValidSubmit: onValidSubmit
+  onValidSubmit: onValidSubmit,
+  messages: messages,
+  locales: 'pt'
 };
 
 var content = document.getElementById('content');

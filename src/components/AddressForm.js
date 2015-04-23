@@ -1,6 +1,9 @@
 var React = require('react');
 var Formsy = require('formsy-react');
 var _ = require('underscore');
+var ReactIntl = require('react-intl');
+var IntlMixin = ReactIntl.IntlMixin;
+var FormattedMessage = ReactIntl.FormattedMessage;
 require('../styles/address-form.less');
 
 Formsy.addValidationRule('isAlphaNumericPunctuation', function (values, value) {
@@ -8,6 +11,8 @@ Formsy.addValidationRule('isAlphaNumericPunctuation', function (values, value) {
 });
 
 var AddressForm = React.createClass({
+  mixins: [ReactIntl.IntlMixin],
+
   getInitialState: function () {
     return {
       canSubmit: true,
@@ -58,7 +63,8 @@ var AddressForm = React.createClass({
               className='btn btn-primary'
               type='submit'
               disabled={!this.state.canSubmit}>
-              Save
+            <FormattedMessage
+              message={this.getIntlMessage('save')} />
             </button>
           </div>
         </div>

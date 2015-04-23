@@ -1,12 +1,14 @@
 var React = require('react');
 var Formsy = require('formsy-react');
+var ReactIntl = require('react-intl');
+var IntlMixin = ReactIntl.IntlMixin;
 
 Formsy.addValidationRule('isCEP', function (values, value) {
   return /^([\d]{5})\-?([\d]{3})$/.test(value);
 });
 
 var CEP = React.createClass({
-  mixins: [Formsy.Mixin],
+  mixins: [Formsy.Mixin, IntlMixin],
 
   getDefaultProps: function () {
     return {
@@ -25,11 +27,11 @@ var CEP = React.createClass({
     var errorMessage;
     if (this.showRequired()) {
       className += ' required';
-      errorMessage = 'Este campo é obrigatório';
+      errorMessage = this.props.requiredMessage || this.getIntlMessage('validation.required');
     }
     if (this.showError()) {
       className += ' error';
-      errorMessage = 'Por favor, informe um CEP válido';
+      errorMessage = this.props.errorMessage || this.getIntlMessage('validation.cep');
     }
 
     return (
