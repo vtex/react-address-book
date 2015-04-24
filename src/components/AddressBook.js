@@ -1,26 +1,24 @@
-var React = require('react');
-var _ = require('underscore');
-var AddressSummary = require('./AddressSummary');
-var AddressForm = require('./AddressForm');
+import React from "react";
+import _ from "underscore";
+import AddressSummary from "./AddressSummary";
+import AddressForm from "./AddressForm";
 if (!window.Intl) {
   window.Intl = require('intl');
 }
-var ReactIntl = require('react-intl');
-var IntlMixin = ReactIntl.IntlMixin;
-
-require('normalize.css');
-require('../styles/address-book.less');
+import ReactIntl, {IntlMixin} from "react-intl";
+import "normalize.css";
+import "../styles/address-book.less";
 
 var AddressBook = React.createClass({
   mixins: [ReactIntl.IntlMixin],
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       addressList: this.props.addressList
     };
   },
 
-  onSelect: function(address) {
+  onSelect(address) {
     this.setState({
       addressList: _.map(this.state.addressList, function(a) {
         a.selected = (a === address);
@@ -32,7 +30,7 @@ var AddressBook = React.createClass({
     }
   },
 
-  onEdit: function(address) {
+  onEdit(address) {
     this.setState({
       addressList: _.map(this.state.addressList, function(a) {
         a.editing = (a === address);
@@ -41,7 +39,7 @@ var AddressBook = React.createClass({
     });
   },
 
-  onValidSubmit: function(address) {
+  onValidSubmit(address) {
     this.setState({
       addressList: _.map(this.state.addressList, function(a) {
         a.editing = false;
@@ -56,7 +54,7 @@ var AddressBook = React.createClass({
     }
   },
 
-  render: function() {
+  render() {
     var addressForm;
     var addressSummaryNodes;
     var editAddress = _.find(this.state.addressList, function(a) {
@@ -86,4 +84,4 @@ var AddressBook = React.createClass({
   }
 });
 
-module.exports = AddressBook;
+export default AddressBook;

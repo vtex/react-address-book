@@ -1,26 +1,24 @@
-var React = require('react');
-var Formsy = require('formsy-react');
-var ReactIntl = require('react-intl');
-var IntlMixin = ReactIntl.IntlMixin;
-var FormattedMessage = ReactIntl.FormattedMessage;
+import React from "react";
+import Formsy from "formsy-react";
+import ReactIntl, {IntlMixin, FormattedMessage} from "react-intl";
 
 var Text = React.createClass({
   mixins: [Formsy.Mixin, IntlMixin],
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       id: 'input-' + (Math.random() * 100000).toFixed(),
       validations: 'isAlphaNumericPunctuation'
     };
   },
 
-  changeValue: function (event) {
+  changeValue(event) {
     this.setValue(event.currentTarget.value);
   },
 
-  render: function () {
+  render() {
     var labelMessageKey = this.props.name || this.props.label;
-    var className = this.props.className + ' form-group'
+    var className = this.props.className + ' form-group';
     var errorMessage;
     if (this.showRequired()) {
       className += ' required';
@@ -50,4 +48,4 @@ var Text = React.createClass({
   }
 });
 
-module.exports = Text;
+export default Text;

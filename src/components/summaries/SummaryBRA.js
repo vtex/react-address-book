@@ -1,6 +1,6 @@
-var React = require('react');
+import React from "react";
 
-module.exports = function (address) {
+export default function (address) {
   return (
     <div className='address-lines'>
       <div className='address-line-1'>
@@ -14,4 +14,4 @@ module.exports = function (address) {
       </div>
     </div>
   );
-};
+}

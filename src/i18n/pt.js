@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "selected": "Selecionado",
   "edit": "Editar",
   "save": "Salvar",
@@ -8,4 +8,4 @@ module.exports = {
     "alphaNumericPunctuation": "Por favor, digite apenas letras e números",
     "cep": "Por favor, digite um CEP válido"
   }
-}
+};

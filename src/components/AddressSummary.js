@@ -1,25 +1,23 @@
-var React = require('react');
-var ReactIntl = require('react-intl');
-var IntlMixin = ReactIntl.IntlMixin;
-var FormattedMessage = ReactIntl.FormattedMessage;
-require('../styles/address-summary.less');
+import React from "react";
+import ReactIntl, {IntlMixin, FormattedMessage} from "react-intl";
+import "../styles/address-summary.less";
 
 var AddressSummary = React.createClass({
   mixins: [ReactIntl.IntlMixin],
-  
-  onCheck: function() {
+
+  onCheck() {
     if (this.props.onSelect) {
       this.props.onSelect(this.props.address);
     }
   },
 
-  onEdit: function() {
+  onEdit() {
     if (this.props.onEdit) {
       this.props.onEdit(this.props.address);
     }
   },
 
-  render: function() {
+  render() {
     if (!this.props.address) {
       return;
     }
@@ -52,4 +50,4 @@ var AddressSummary = React.createClass({
   }
 });
 
-module.exports = AddressSummary;
+export default AddressSummary;

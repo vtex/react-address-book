@@ -1,8 +1,8 @@
-var React = require('react');
-var CEP = require('../inputs/CEP');
-var Text = require('../inputs/Text');
+import React from "react";
+import CEP from "../inputs/CEP";
+import Text from "../inputs/Text";
 
-module.exports = function (address) {
+export default function (address) {
   var className = 'input-group-' + address.country;
   return (
     <div className={className}>
@@ -17,4 +17,4 @@ module.exports = function (address) {
       </div>
     </div>
   );
-};
+}

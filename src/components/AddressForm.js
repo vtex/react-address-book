@@ -1,10 +1,8 @@
-var React = require('react');
-var Formsy = require('formsy-react');
-var _ = require('underscore');
-var ReactIntl = require('react-intl');
-var IntlMixin = ReactIntl.IntlMixin;
-var FormattedMessage = ReactIntl.FormattedMessage;
-require('../styles/address-form.less');
+import React from "react";
+import Formsy from "formsy-react";
+import _ from "underscore";
+import ReactIntl, {IntlMixin, FormattedMessage} from "react-intl";
+import "../styles/address-form.less";
 
 Formsy.addValidationRule('isAlphaNumericPunctuation', function (values, value) {
   return /^[A-Za-zÀ-ž0-9\/\\\-\.\,\s\(\)\'\#ªº]*$/.test(value);
@@ -13,37 +11,37 @@ Formsy.addValidationRule('isAlphaNumericPunctuation', function (values, value) {
 var AddressForm = React.createClass({
   mixins: [ReactIntl.IntlMixin],
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       canSubmit: true,
       address: this.props.initialAddress
     };
   },
 
-  onValidSubmit: function (address) {
+  onValidSubmit(address) {
     address.addressId = this.state.address.addressId;
     this.props.onValidSubmit(address);
   },
 
-  onChange: function (address) {
+  onChange(address) {
     this.setState({
       address: _.extend(this.state.address, address)
     });
   },
 
-  enableButton: function () {
+  enableButton() {
     this.setState({
       canSubmit: true
     });
   },
 
-  disableButton: function () {
+  disableButton() {
     this.setState({
       canSubmit: false
     });
   },
 
-  render: function() {
+  render() {
     if (!this.state.address) {
       return;
     }
@@ -73,4 +71,4 @@ var AddressForm = React.createClass({
   }
 });
 
-module.exports = AddressForm;
+export default AddressForm;

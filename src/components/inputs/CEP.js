@@ -1,7 +1,6 @@
-var React = require('react');
-var Formsy = require('formsy-react');
-var ReactIntl = require('react-intl');
-var IntlMixin = ReactIntl.IntlMixin;
+import React from "react";
+import Formsy from "formsy-react";
+import ReactIntl, {IntlMixin} from "react-intl";
 
 Formsy.addValidationRule('isCEP', function (values, value) {
   return /^([\d]{5})\-?([\d]{3})$/.test(value);
@@ -10,7 +9,7 @@ Formsy.addValidationRule('isCEP', function (values, value) {
 var CEP = React.createClass({
   mixins: [Formsy.Mixin, IntlMixin],
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       name: 'postalCode',
       validations: 'isCEP',
@@ -18,11 +17,11 @@ var CEP = React.createClass({
     };
   },
 
-  changeValue: function (event) {
+  changeValue(event) {
     this.setValue(event.currentTarget.value);
   },
 
-  render: function () {
+  render() {
     var className = this.props.className + ' form-group';
     var errorMessage;
     if (this.showRequired()) {
@@ -50,4 +49,4 @@ var CEP = React.createClass({
   }
 });
 
-module.exports = CEP;
+export default CEP;
