@@ -1,17 +1,17 @@
 import React from "react";
-import _ from "underscore";
-import CEP from "../inputs/CEP";
 import TextInput from "../inputs/Text";
-import SelectInput from "../inputs/Select";
 
-var states = ["AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RO","RS","RR","SC","SE","SP","TO"];
+var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
 
 export default function (address) {
   var className = 'input-group-' + address.country;
   return (
     <div className={className}>
       <div className='row'>
-        <CEP className='col-sm-4' value={address.postalCode}/>
+        <TextInput className='col-sm-4'
+          name='postalCode'
+          required
+          value={address.postalCode}/>
       </div>
       <div className='row'>
         <TextInput className='col-sm-8'
@@ -38,15 +38,13 @@ export default function (address) {
           name='city'
           required
           value={address.city}/>
-        <SelectInput className='col-sm-4'
+        <TextInput className='col-sm-4'
           name='state'
-          options={states}
           required
           value={address.state}/>
         <TextInput className='col-sm-4'
           name='country'
           required
-          readOnly='readonly'
           value={address.country}/>
       </div>
       <div className='row'>

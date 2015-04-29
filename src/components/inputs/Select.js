@@ -2,13 +2,12 @@ import React from "react";
 import Formsy from "formsy-react";
 import ReactIntl, {IntlMixin, FormattedMessage} from "react-intl";
 
-var TextInput = React.createClass({
+var SelectInput = React.createClass({
   mixins: [Formsy.Mixin, IntlMixin],
 
   getDefaultProps() {
     return {
-      id: 'input-' + (Math.random() * 100000).toFixed(),
-      validations: 'isAlphaNumericPunctuation'
+      id: 'input-' + (Math.random() * 100000).toFixed()
     };
   },
 
@@ -29,18 +28,25 @@ var TextInput = React.createClass({
       errorMessage = this.props.errorMessage || this.getIntlMessage('validation.alphaNumericPunctuation');
     }
 
+    var options = this.props.options.map(function (o) {
+      let value = o.value ? o.value : o;
+      let label = o.label ? o.label : o;
+      return <option value={value}>{label}</option>;
+    });
+
     return (
       <div className={className}>
         <label htmlFor={this.props.id}>
           <FormattedMessage
             message={this.getIntlMessage(labelMessageKey)} />
         </label>
-        <input type='text'
+        <select
           id={this.props.id}
           className='form-control'
           onChange={this.changeValue}
-          value={this.getValue()}
-          readOnly={this.props.readOnly}/>
+          value={this.getValue()}>
+          {options}
+        </select>
         <p className="help-block error">
           {errorMessage}
         </p>
@@ -49,4 +55,4 @@ var TextInput = React.createClass({
   }
 });
 
-export default TextInput;
+export default SelectInput;

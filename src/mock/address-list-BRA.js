@@ -1,6 +1,4 @@
-import React from "react";
-import messages from "../i18n/pt";
-var addressList = [
+export default [
   {
     "addressType": "residential",
     "receiverName": "Joakim",
@@ -33,29 +31,3 @@ var addressList = [
     "geoCoordinates": []
   }
 ];
-
-var onSelect = function(address) {
-  console.log('address selected!', address);
-  // TODO simulate API latency
-  // TODO check for errors and re-render with error message
-};
-
-var onValidSubmit = function(address) {
-  console.log('address submit!', address);
-  // TODO simulate API latency
-  // TODO check for errors and re-render with error message
-};
-
-var options = {
-  addressList,
-  onSelect,
-  onValidSubmit,
-  messages,
-  locales: 'pt'
-};
-
-var content = document.getElementById('content');
-
-var AddressBook = React.createFactory(require('./AddressBook'));
-
-React.render(AddressBook(options), content);
