@@ -38,8 +38,9 @@ export default function (address) {
           name='city'
           required
           value={address.city}/>
-        <TextInput className='col-sm-4'
+        <SelectInput className='col-sm-4'
           name='state'
+          options={states}
           required
           value={address.state}/>
         <TextInput className='col-sm-4'
