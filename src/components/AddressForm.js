@@ -46,7 +46,15 @@ var AddressForm = React.createClass({
       return;
     }
     var country = this.state.address.country;
-    var countryInputGroup = require('./input-groups/InputGroup' + country);
+    var countryInputGroup;
+    try {
+      countryInputGroup = require('./input-groups/InputGroup' + country);
+    }
+    catch (e) {
+      // Default input group
+      countryInputGroup = require('./input-groups/InputGroup');
+    }
+
     return (
       <Formsy.Form
         className='address-form'

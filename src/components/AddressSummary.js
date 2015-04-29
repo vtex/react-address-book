@@ -22,7 +22,14 @@ var AddressSummary = React.createClass({
       return;
     }
     var country = this.props.address.country;
-    var countrySummary = require('./summaries/Summary' + country);
+    var countrySummary;
+    try {
+      countrySummary = require('./summaries/Summary' + country);
+    }
+    catch (e) {
+      // Default summary
+      countrySummary = require('./summaries/Summary');
+    }
 
     return (
       <div className='address-summary'>

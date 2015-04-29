@@ -8,7 +8,8 @@ var locales = language.split('-')[0]; // pt-BR -> pt
 
 // Mock address list
 var addressListCountries = {
-  BRA: require('./mock/address-list-BRA.js')
+  BRA: require('./mock/address-list-BRA.js'),
+  ARG: require('./mock/address-list-ARG.js')
 };
 
 var addressList = addressListCountries[country];
