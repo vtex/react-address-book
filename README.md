@@ -4,31 +4,7 @@ A simple address CRUD with validation, i18n and multiple countries support.
 
 ## Usage
 
-Include React (0.13) and `dist/react-address-book-factory.js` scripts on your page:
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.13.2/react.min.js'></script>
-    <script src='https://io.vtex.com.br/react-address-book/0.1.0/react-address-book-factory.js'></script>
-
-Then, use `React.render` and the global `window.vtex.ReactAddressBook` variable to render the component to a given DOM element:
-
-    var addressList = [/*VTEX address JSON array*/];
-
-    var onValidSubmit = function(address) {
-      console.log('address submited!', address);
-    };
-
-    var options = {
-      addressList: addressList,
-      onValidSubmit: onValidSubmit
-    };
-
-    var content = document.getElementById('content');
-
-    React.render(vtex.AddressBook(options), content);
-
-If any outside changes happens to your data, simple re-render the component:
-
-    React.render(vtex.AddressBook(options), content);
+Take a look at [the example index.html](examples/index.html).
 
 ## Latency compensation
 
@@ -51,7 +27,3 @@ These are the available options for the AddressBook component:
 ### onSelect
 
 ### onValidSubmit
-
-### TODO: errorMessage
-
-### TODO: locale
