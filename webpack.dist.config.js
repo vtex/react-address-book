@@ -5,27 +5,31 @@
  */
 
 'use strict';
-
 var webpack = require('webpack');
 
 module.exports = {
 
   output: {
-    publicPath: '/assets/',
-    path: 'dist/assets/',
-    filename: '[name].js'
+    publicPath: '/',
+    path: 'dist/',
+    filename: 'react-address-book.js',
+    library: 'AddressBook',
+    libraryTarget: 'umd'
   },
 
   externals: [{
-    react: true,
-    underscore: true
+    react: 'React',
+    underscore: '_',
+    intl: 'Intl',
+    'react-intl': 'ReactIntl',
+    'formsy-react': 'Formsy'
   }],
 
   debug: false,
-  devtool: false,
-  entry: {
-    ReactAddressBook: './src/components/ReactAddressBook.js'
-  },
+  devtool: 'sourcemap',
+  entry: [
+    './src/components/AddressBook.js'
+  ],
 
   stats: {
     colors: true,

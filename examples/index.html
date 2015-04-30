@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="language" content="pt-BR">
+  <meta name="country" content="BRA">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+  <!--[if lt IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div id="content" class="container">
+  </div>
+
+  <script src="../node_modules/react/dist/react.min.js"></script>
+  <script src="../node_modules/underscore/underscore-min.js"></script>
+  <script src="../node_modules/react-intl/dist/react-intl.min.js"></script>
+  <script src="../node_modules/formsy-react/release/formsy-react.min.js"></script>
+  <script src="../node_modules/jquery-browserify/lib/jquery.js"></script>
+  <script src="../dist/react-address-book.js"></script>
+  <script>
+    var country = $("meta[name='country']").attr("content"); // BRA
+    var language = $("meta[name='language']").attr("content"); // pt-BR
+    var locales = language.split('-')[0]; // pt-BR -> pt
+
+    // Mock address list
+    var addressListCountries = {
+      BRA: [
+        {
+          "addressType": "residential",
+          "receiverName": "Joakim",
+          "addressId": "-1429301413320",
+          "postalCode": "22260000",
+          "city": "Rio de Janeiro",
+          "state": "RJ",
+          "country": "BRA",
+          "street": "Rua São Clemente",
+          "number": "100",
+          "neighborhood": "Botafogo",
+          "complement": "num 1000",
+          "reference": null,
+          "geoCoordinates": [],
+          "selected": true
+        },
+        {
+          "addressType": "residential",
+          "receiverName": "Martin",
+          "addressId": "-1429301413321",
+          "postalCode": "22240000",
+          "city": "Rio de Janeiro",
+          "state": "RJ",
+          "country": "BRA",
+          "street": "Rua Voluntários da Pátria",
+          "number": "411",
+          "neighborhood": "Botafogo",
+          "complement": "casa 2",
+          "reference": null,
+          "geoCoordinates": []
+        }
+      ]
+    };
+
+    var addressList = addressListCountries[country];
+
+    var onSelect = function(address) {
+      console.log('address selected!', address);
+      // TODO simulate API latency
+      // TODO check for errors and re-render with error message
+    };
+
+    var onValidSubmit = function(address) {
+      console.log('address submit!', address);
+      // TODO simulate API latency
+      // TODO check for errors and re-render with error message
+    };
+
+    // git clone git@github.com:vtex/i18n; npm i; grunt
+    // in production, localhost -> io.vtex.com.br and add version after i18n
+    $.get(`http://io.vtex.com.br/i18n/0.1.12/address/${locales}.json`).done(function(messages) {
+      var options = {
+        addressList: addressList,
+        onSelect: onSelect,
+        onValidSubmit: onValidSubmit,
+        messages: messages,
+        locales: locales,
+        country: country
+      };
+
+      var content = document.getElementById('content');
+
+      React.render(React.createElement(AddressBook, options), content);
+    });
+  </script>
+</body>
+</html>

@@ -9,16 +9,17 @@ module.exports = (grunt) ->
     pkg: pkg
     webpack:
       options: webpackDistConfig
-      dist: cache: false
+      dist:
+        cache: false
 
     'webpack-dev-server':
       options:
         hot: true
         port: 8000
         webpack: webpackDevConfig
-        publicPath: '/assets/'
         contentBase: './<%= pkg.src %>/'
-      start: keepAlive: true
+      start:
+        keepAlive: true
 
     connect:
       options:
@@ -27,33 +28,26 @@ module.exports = (grunt) ->
         options:
           keepalive: true
           base: pkg.dist
+      examples:
+        options:
+          keepalive: true
+          base: '.'
 
     open:
-      options: delay: 500
-      dev: path: 'http://localhost:<%= connect.options.port %>/webpack-dev-server/'
-      dist: path: 'http://localhost:<%= connect.options.port %>/'
+      options:
+        delay: 500
+      dev:
+        path: 'http://localhost:<%= connect.options.port %>/webpack-dev-server/'
+      dist:
+        path: 'http://localhost:<%= connect.options.port %>/'
+      examples:
+        path: 'http://localhost:<%= connect.options.port %>/examples/'
 
     karma:
       unit:
         configFile: 'karma.conf.js'
 
-    copy:
-      dist:
-        files: [
-          {
-            flatten: true
-            expand: true
-            src: [ '<%= pkg.src %>/*' ]
-            dest: '<%= pkg.dist %>/'
-            filter: 'isFile'
-          }
-          {
-            flatten: true
-            expand: true
-            src: [ '<%= pkg.src %>/images/*' ]
-            dest: '<%= pkg.dist %>/images/'
-          }
-        ]
+    copy: {}
 
     clean:
       dist:
@@ -63,9 +57,10 @@ module.exports = (grunt) ->
         } ]
 
   tasks =
-    build: ['clean', 'copy', 'webpack']
+    build: ['clean', 'webpack']
     test: ['karma']
     prod: ['build', 'open:dist', 'connect:dist']
+    examples: ['open:examples', 'connect:examples']
     default: ['open:dev', 'webpack-dev-server']
 
   # Project configuration.

@@ -11,7 +11,7 @@ module.exports = {
 
   output: {
     filename: 'main.js',
-    publicPath: '/assets/'
+    publicPath: '/'
   },
 
   cache: true,
@@ -35,6 +35,7 @@ module.exports = {
       'components': __dirname + '/src/components/'
     }
   },
+
   module: {
     preLoaders: [{
       test: /\.js$/,
@@ -43,7 +44,7 @@ module.exports = {
     }],
     loaders: [{
       test: /\.js$/,
-      exclude: /node_modules|react-address-summary/,
+      exclude: /node_modules/,
       loader: 'react-hot!babel-loader'
     }, {
       test: /\.less/,
