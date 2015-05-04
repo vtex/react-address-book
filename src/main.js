@@ -16,7 +16,7 @@ var addressList = addressListCountries[country];
 
 // git clone git@github.com:vtex/i18n; npm i; grunt
 // in production, localhost -> io.vtex.com.br and add version after i18n
-$.get(`http://localhost/i18n/address/${locales}.json`).done(function(messages) {
+$.get(`http://localhost:8081/i18n/address/${locales}.json`).done(function(messages) {
   var options = {
     addressList,
     messages,
@@ -26,7 +26,5 @@ $.get(`http://localhost/i18n/address/${locales}.json`).done(function(messages) {
 
   var content = document.getElementById('content');
 
-  var AddressBookFactory = React.createFactory(AddressBook);
-
-  React.render(AddressBookFactory(options), content);
+  React.render(<AddressBook {...options}/>, content);
 });
