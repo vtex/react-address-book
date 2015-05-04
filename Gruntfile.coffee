@@ -27,5 +27,5 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.config.init config
-  require('load-grunt-tasks')(grunt, {pattern: ['grunt-*', '!grunt-vtex']})
+  require('load-grunt-tasks')(grunt, {pattern: ['grunt-*']})
   grunt.registerTask taskName, taskArray for taskName, taskArray of tasks
