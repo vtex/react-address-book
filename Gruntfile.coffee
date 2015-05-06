@@ -27,6 +27,7 @@ module.exports = (grunt) ->
 
   tasks =
     dist: ['clean', 'webpack']
+    test: []
     vtex_deploy: ['shell:cp', 'shell:cp_pkg', 'shell:cp_br', 'shell:cp_br_pkg']
     examples: ['connect:examples']
     # Development tasks
