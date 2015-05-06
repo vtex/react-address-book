@@ -11,14 +11,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
-  <!--[if lt IE 8]>
+  <!--[if lte IE 8]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div id="content" class="container">
   </div>
 
+  <script src="//io.vtex.com.br/front-libs/jquery/1.8.3/jquery.js"></script>
+  <!--[if lte IE 9]>
   <script src="//io.vtex.com.br/front-libs/es5-shim/4.1.1/es5-shim.min.js"></script>
   <script src="//io.vtex.com.br/front-libs/es5-shim/4.1.1/es5-sham.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js"></script>
+  <![endif]-->
   <script src="//io.vtex.com.br/front-libs/react/0.13.2/react.min.js"></script>
   <script src="//io.vtex.com.br/front-libs/underscore/1.8.3/underscore-min.js"></script>
   <script src="//io.vtex.com.br/front-libs/intl/0.1.4/Intl.min.js"></script>
@@ -27,7 +31,6 @@
   <script src="//io.vtex.com.br/front-libs/intl/0.1.4/locale-data/jsonp/en.js"></script>
   <script src="//io.vtex.com.br/front-libs/react-intl/1.2.0/react-intl.min.js"></script>
   <script src="//io.vtex.com.br/front-libs/formsy-react/0.12.5/formsy-react.min.js"></script>
-  <script src="//io.vtex.com.br/front-libs/jquery/1.8.3/jquery.js"></script>
   <script src="../dist/react-address-book.js"></script>
   <script>
     var country = $("meta[name='country']").attr("content"); // BRA
@@ -87,7 +90,7 @@
 
     // git clone git@github.com:vtex/i18n; npm i; grunt
     // in production, localhost -> io.vtex.com.br and add version after i18n
-    $.get("http://io.vtex.com.br/i18n/0.1.12/address/" + locales + ".json").done(function(messages) {
+    $.get("//io.vtex.com.br/i18n/0.1.12/address/" + locales + ".json").done(function(messages) {
       var options = {
         addressList: addressList,
         onSelect: onSelect,
