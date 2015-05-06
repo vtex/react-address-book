@@ -4,19 +4,12 @@ _ = require 'underscore'
 module.exports = (grunt) ->
   pkg = grunt.file.readJSON 'package.json'
 
-  shell =
-    cp_pkg:
-      command: "aws s3 cp package.json s3://vtex-io-us/#{pkg.name}/#{pkg.version}/"
-    # O Bucket vtex-io usa a região São Paulo, para fallback em caso de problemas com vtex-io-us
-    cp_br_pkg:
-      command: "aws s3 cp package.json s3://vtex-io/#{pkg.name}/#{pkg.version}/"
-
   config = _.extend(
     defaults.webpack(pkg),
     defaults.clean(pkg),
     defaults.connect(pkg),
+    defaults.deploy(pkg),
     {
-      shell: _.extend(defaults.deploy(pkg).shell, shell)
       open:
         options:
           delay: 500
