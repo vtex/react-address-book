@@ -25,8 +25,6 @@ module.exports = (grunt) ->
     }
   )
 
-  console.log(config)
-
   tasks =
     dist: ['clean', 'webpack']
     test: []
