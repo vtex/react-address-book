@@ -87,7 +87,7 @@
 
     // git clone git@github.com:vtex/i18n; npm i; grunt
     // in production, localhost -> io.vtex.com.br and add version after i18n
-    $.get(`http://io.vtex.com.br/i18n/0.1.12/address/${locales}.json`).done(function(messages) {
+    $.get("http://io.vtex.com.br/i18n/0.1.12/address/" + locales + ".json").done(function(messages) {
       var options = {
         addressList: addressList,
         onSelect: onSelect,
