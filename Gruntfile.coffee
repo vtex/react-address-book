@@ -10,6 +10,13 @@ module.exports = (grunt) ->
     defaults.connect(pkg),
     defaults.deploy(pkg),
     {
+      shell:
+        cp_pkg:
+          command: "aws s3 cp package.json s3://vtex-io-us/#{pkg.name}/#{pkg.version}/"
+        # O Bucket vtex-io usa a região São Paulo, para fallback em caso de problemas com vtex-io-us
+        cp_br_pkg:
+          command: "aws s3 cp package.json s3://vtex-io/#{pkg.name}/#{pkg.version}/"
+
       open:
         options:
           delay: 500
@@ -20,7 +27,7 @@ module.exports = (grunt) ->
 
   tasks =
     dist: ['clean', 'webpack']
-    vtex_deploy: ['shell:cp']
+    vtex_deploy: ['shell:cp', 'shell:cp_pkg', 'shell:cp_br', 'shell:cp_br_pkg']
     examples: ['connect:examples']
     # Development tasks
     default: ['open:dev', 'webpack-dev-server']
