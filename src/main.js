@@ -1,5 +1,4 @@
 import React from "react";
-import $ from "jquery-browserify";
 import AddressBook from "./components/AddressBook";
 
 var country = $("meta[name='country']").attr("content"); // BRA
