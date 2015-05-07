@@ -30,6 +30,15 @@ var AddressBook = React.createClass({
     }
   },
 
+  onCancel() {
+    this.setState({
+      addressList: _.map(this.state.addressList, function(a) {
+        a.editing = false;
+        return a;
+      })
+    });
+  },
+
   onEdit(address) {
     this.setState({
       addressList: _.map(this.state.addressList, function(a) {
@@ -63,16 +72,17 @@ var AddressBook = React.createClass({
 
     if (editAddress) {
       addressForm = <AddressForm
-        initialAddress={editAddress}
+        initialAddress={_.clone(editAddress)}
+        onCancel={this.onCancel}
         onValidSubmit={this.onValidSubmit}/>;
     } else {
-      addressSummaryNodes = _.map(this.state.addressList, function(a) {
-        return <AddressSummary
+      addressSummaryNodes = _.map(this.state.addressList, (a) =>
+        <AddressSummary
           key={a.addressId}
           address={a}
           onSelect={this.onSelect}
-          onEdit={this.onEdit}/>;
-      }.bind(this));
+          onEdit={this.onEdit}/>
+      );
     }
 
     return (

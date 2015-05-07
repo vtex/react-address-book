@@ -66,11 +66,16 @@ var AddressForm = React.createClass({
         <div className='row'>
           <div className='col-sm-3'>
             <button
+              className='btn btn-default'
+              onClick={this.props.onCancel}
+              type='button'>
+              <FormattedMessage message={this.getIntlMessage('cancel')} />
+            </button>
+            <button
               className='btn btn-primary'
               type='submit'
               disabled={!this.state.canSubmit}>
-            <FormattedMessage
-              message={this.getIntlMessage('save')} />
+              <FormattedMessage message={this.getIntlMessage('save')} />
             </button>
           </div>
         </div>
