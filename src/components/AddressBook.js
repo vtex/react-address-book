@@ -72,7 +72,7 @@ var AddressBook = React.createClass({
 
     if (editAddress) {
       addressForm = <AddressForm
-        initialAddress={_.clone(editAddress)}
+        initialAddress={editAddress}
         onCancel={this.onCancel}
         onValidSubmit={this.onValidSubmit}/>;
     } else {

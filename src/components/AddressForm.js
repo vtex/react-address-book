@@ -14,7 +14,7 @@ var AddressForm = React.createClass({
   getInitialState() {
     return {
       canSubmit: true,
-      address: this.props.initialAddress
+      address: _.clone(this.props.initialAddress)
     };
   },
 
