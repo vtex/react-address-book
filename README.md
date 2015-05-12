@@ -47,7 +47,7 @@ An array of address objects.
 
 Optional address properties:
 
-`selected`: This is the selected address.
+`selected`: This is the selected address.  
 `editing`: This address is currently being edited.
 
 ### onSelect(address)
