@@ -47,6 +47,7 @@ export default function (address) {
         <TextInput className='col-sm-4'
           name='country'
           required
+          tabIndex='-1'
           value={address.country}/>
       </div>
       <div className='row'>

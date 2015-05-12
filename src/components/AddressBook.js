@@ -5,7 +5,7 @@ import AddressForm from "./AddressForm";
 if (!window.Intl) {
   window.Intl = require('intl');
 }
-import ReactIntl, {IntlMixin} from "react-intl";
+import ReactIntl, {IntlMixin, FormattedMessage} from "react-intl";
 import "normalize.css";
 import "../styles/address-book.less";
 
@@ -31,11 +31,14 @@ var AddressBook = React.createClass({
   },
 
   onCancel() {
+    let notEditing = (a) => a.editing = false
+    let noId = (a) => !a.addressId
+
     this.setState({
-      addressList: _.map(this.state.addressList, function(a) {
-        a.editing = false;
-        return a;
-      })
+      addressList: _.chain(this.state.addressList)
+        .each(notEditing)
+        .reject(noId)
+        .value()
     });
   },
 
@@ -48,11 +51,22 @@ var AddressBook = React.createClass({
     });
   },
 
+  onNewAddress() {
+    this.state.addressList.push({
+      editing: true,
+      country: this.props.country
+    });
+    this.setState({
+      addressList: this.state.addressList
+    });
+  },
+
   onValidSubmit(address) {
     this.setState({
       addressList: _.map(this.state.addressList, function(a) {
         a.editing = false;
-        if (a.addressId === address.addressId) {
+        // new address or edit address
+        if (!a.addressId || (a.addressId === address.addressId)) {
           _.extend(a, address);
         }
         return a;
@@ -65,6 +79,7 @@ var AddressBook = React.createClass({
 
   render() {
     var addressForm;
+    var addressSummary;
     var addressSummaryNodes;
     var editAddress = _.find(this.state.addressList, function(a) {
       return a.editing;
@@ -83,11 +98,17 @@ var AddressBook = React.createClass({
           onSelect={this.onSelect}
           onEdit={this.onEdit}/>
       );
+      addressSummary = <div className='address-summary-list'>
+        {addressSummaryNodes}
+        <button onClick={this.onNewAddress} className='btn btn-primary new-address'>
+          <FormattedMessage message={this.getIntlMessage('newAddress')} />
+        </button>
+      </div>;
     }
 
     return (
       <div className='address-book'>
-        {addressSummaryNodes}
+        {addressSummary}
         {addressForm}
       </div>
     );

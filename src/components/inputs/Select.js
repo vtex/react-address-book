@@ -44,6 +44,7 @@ var SelectInput = React.createClass({
           id={this.props.id}
           className='form-control'
           onChange={this.changeValue}
+          tabIndex={this.props.tabIndex}
           value={this.getValue()}>
           {options}
         </select>

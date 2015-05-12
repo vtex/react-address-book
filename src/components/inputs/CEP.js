@@ -40,6 +40,7 @@ var CEP = React.createClass({
           id='cep'
           className='form-control'
           onChange={this.changeValue}
+          tabIndex={this.props.tabIndex}
           value={this.getValue()}/>
         <p className="help-block error">
           {errorMessage}

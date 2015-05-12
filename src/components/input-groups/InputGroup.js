@@ -43,6 +43,7 @@ export default function (address) {
         <TextInput className='col-sm-4'
           name='country'
           required
+          tabIndex='-1'
           readOnly='readonly'
           value={address.country}/>
       </div>

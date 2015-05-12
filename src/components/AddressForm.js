@@ -19,7 +19,7 @@ var AddressForm = React.createClass({
   },
 
   onValidSubmit(address) {
-    address.addressId = this.state.address.addressId;
+    address.addressId = this.state.address.addressId || (Math.random() * 100000).toFixed(); // new address - create ID
     this.props.onValidSubmit(address);
   },
 

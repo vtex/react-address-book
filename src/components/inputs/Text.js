@@ -20,11 +20,11 @@ var TextInput = React.createClass({
     var labelMessageKey = 'form.' + this.props.name || this.props.label;
     var className = this.props.className + ' form-group';
     var errorMessage;
-    if (this.showRequired()) {
+    if (!this.isPristine() && this.showRequired()) {
       className += ' required';
       errorMessage = this.props.requiredMessage || this.getIntlMessage('validation.required');
     }
-    if (this.showError()) {
+    if (!this.isPristine() && this.showError()) {
       className += ' error';
       errorMessage = this.props.errorMessage || this.getIntlMessage('validation.alphaNumericPunctuation');
     }
@@ -40,6 +40,7 @@ var TextInput = React.createClass({
           className='form-control'
           onChange={this.changeValue}
           value={this.getValue()}
+          tabIndex={this.props.tabIndex}
           readOnly={this.props.readOnly}/>
         <p className="help-block error">
           {errorMessage}
