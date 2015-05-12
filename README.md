@@ -20,7 +20,7 @@ If the data update fails for some reason, the component user is encouraged to **
 
 These are the available options for the AddressBook component:
 
-### addressList
+### `addressList` (required)
 
 An array of address objects.
 
@@ -50,11 +50,23 @@ Optional address properties:
 `selected`: This is the selected address.  
 `editing`: This address is currently being edited.
 
-### onSelect(address)
+### `messages` (required)
+
+The messages dictionary. E.g. http://io.vtex.com.br/i18n/0.1.18/address/pt.json
+
+### `locales` (required)
+
+The locale selected. E.g. `pt`.
+
+### `country` (required)
+
+The country code for new addresses. E.g. `BRA`.
+
+### `onSelect(address)`
 
 Called when an user selects an address.
 
-### onValidSubmit(address)
+### `onValidSubmit(address)`
 
 Called when an user submits a valid address.
 It may be a new or existing address - check if the addressId matches any existing one.
