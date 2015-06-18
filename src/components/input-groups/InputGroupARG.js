@@ -4,7 +4,7 @@ import CEP from "../inputs/CEP";
 import TextInput from "../inputs/Text";
 import SelectInput from "../inputs/Select";
 
-var states = ["AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RO","RS","RR","SC","SE","SP","TO"];
+var states = ["","Ciudad Autónoma de Buenos Aires","Buenos Aires","Catamarca","Chaco","Chubut","Corrientes","Córdoba","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago Del Estero","Tierra Del Fuego","Tucumán"];
 
 export default function (address) {
   var className = 'input-group-' + address.country;
