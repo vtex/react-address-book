@@ -1,18 +1,25 @@
 import React from "react";
 import Formsy from "formsy-react";
-import ReactIntl, {IntlMixin} from "react-intl";
+import ReactIntl, { IntlMixin, FormattedMessage } from "react-intl";
 
-Formsy.addValidationRule('isCEP', function (values, value) {
-  return /^([\d]{5})\-?([\d]{3})$/.test(value);
+// TODO it would be nice to use address.country automatically
+// instead of receiving it via validations="isPostalCode:ARG"
+Formsy.addValidationRule('isPostalCode', function (values, value, country) {
+  let regex;
+  switch (country){
+    case 'ARG':
+      regex = /^([\d]{4})$/;
+      break;
+  }
+  return regex.test(value);
 });
 
-var CEP = React.createClass({
+var PostalCode = React.createClass({
   mixins: [Formsy.Mixin, IntlMixin],
 
   getDefaultProps() {
     return {
       name: 'postalCode',
-      validations: 'isCEP',
       required: true
     };
   },
@@ -22,6 +29,7 @@ var CEP = React.createClass({
   },
 
   render() {
+    var labelMessageKey = 'form.' + this.props.name || this.props.label;
     var className = this.props.className + ' form-group';
     var errorMessage;
     if (this.showRequired()) {
@@ -29,15 +37,18 @@ var CEP = React.createClass({
       errorMessage = this.props.requiredMessage || this.getIntlMessage('validation.required');
     }
     if (this.showError()) {
-      className += ' error';
-      errorMessage = this.props.errorMessage || this.getIntlMessage('validation.cep');
+     className += ' error';
+     errorMessage = this.props.errorMessage || this.getIntlMessage('validation.cep');
     }
 
     return (
       <div className={className}>
-        <label htmlFor='cep'>CEP</label>
+        <label htmlFor='postal-code'>
+          <FormattedMessage
+            message={this.getIntlMessage(labelMessageKey)} />
+        </label>
         <input type='text'
-          id='cep'
+          id='postal-code'
           className='form-control'
           onChange={this.changeValue}
           tabIndex={this.props.tabIndex}
@@ -50,4 +61,4 @@ var CEP = React.createClass({
   }
 });
 
-export default CEP;
+export default PostalCode;

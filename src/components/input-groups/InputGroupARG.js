@@ -1,17 +1,19 @@
 import React from "react";
 import _ from "underscore";
-import CEP from "../inputs/CEP";
+import PostalCode from "../inputs/PostalCode";
 import TextInput from "../inputs/Text";
 import SelectInput from "../inputs/Select";
 
-var states = ["","Ciudad Autónoma de Buenos Aires","Buenos Aires","Catamarca","Chaco","Chubut","Corrientes","Córdoba","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago Del Estero","Tierra Del Fuego","Tucumán"];
+var states = ["", "Ciudad Autónoma de Buenos Aires","Buenos Aires","Catamarca","Chaco","Chubut","Corrientes","Córdoba","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago Del Estero","Tierra Del Fuego","Tucumán"];
 
 export default function (address) {
   var className = 'input-group-' + address.country;
   return (
     <div className={className}>
       <div className='row'>
-        <CEP className='col-sm-4' value={address.postalCode} country={address.country}/>
+        <PostalCode className='col-sm-4'
+          validations="isPostalCode:ARG"
+          value={address.postalCode}/>
       </div>
       <div className='row'>
         <TextInput className='col-sm-8'

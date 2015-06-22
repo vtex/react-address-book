@@ -1,6 +1,6 @@
 import React from "react";
 import Formsy from "formsy-react";
-import ReactIntl, {IntlMixin, FormattedMessage} from "react-intl";
+import ReactIntl, { IntlMixin, FormattedMessage } from "react-intl";
 
 var TextInput = React.createClass({
   mixins: [Formsy.Mixin, IntlMixin],

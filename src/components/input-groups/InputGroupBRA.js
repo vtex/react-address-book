@@ -4,14 +4,14 @@ import CEP from "../inputs/CEP";
 import TextInput from "../inputs/Text";
 import SelectInput from "../inputs/Select";
 
-var states = ["AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RO","RS","RR","SC","SE","SP","TO"];
+var states = ["", "AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RO","RS","RR","SC","SE","SP","TO"];
 
 export default function (address) {
   var className = 'input-group-' + address.country;
   return (
     <div className={className}>
       <div className='row'>
-        <CEP className='col-sm-4' value={address.postalCode} country={address.country}/>
+        <CEP className='col-sm-4' value={address.postalCode}/>
       </div>
       <div className='row'>
         <TextInput className='col-sm-8'

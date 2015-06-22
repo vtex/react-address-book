@@ -31,8 +31,8 @@ var AddressBook = React.createClass({
   },
 
   onCancel() {
-    let notEditing = (a) => a.editing = false
-    let noId = (a) => !a.addressId
+    let notEditing = (a) => a.editing = false;
+    let noId = (a) => !a.addressId;
 
     this.setState({
       addressList: _.chain(this.state.addressList)
